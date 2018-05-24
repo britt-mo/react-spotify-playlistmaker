@@ -4,7 +4,7 @@ import SearchBar from '../SearchBar/SearchBar.js';
 import SearchResults from '../SearchResults/SearchResults.js';
 import Playlist from '../Playlist/Playlist.js';
 import TrackList from '../TrackList/TrackList.js';
-import Track from '../Track/Track.js';
+import Track from '../Track/Track.js'
 
 class App extends Component {
   constructor(props) {
@@ -38,8 +38,7 @@ class App extends Component {
     <SearchBar/>
     <div className="App-playlist">
       <SearchResults searchResults ={this.state.searchResults}/>
-      <Playlist playlistTracks={this.state.playlistTracks}
-      onNameChange={this.updatePlaylistName} />
+      <Playlist playlistName={this.state.playlistName} playlistTracks={this.state.playlistTracks}/>
     </div>
   </div>
 </div>

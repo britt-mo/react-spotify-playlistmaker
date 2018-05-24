@@ -1,19 +1,15 @@
 import React from 'react';
 import './Track.css';
-import SearchResults from '../SearchResults/SearchResults.js'
 
 class Track extends React.Component {
   constructor(props) {
     super(props);
   }
-  renderAction(isRemoval) {
-    let lineToRender = '';
-    if (isRemoval) {
-      lineToRender = <a>-</a>;
-    }else {
-      lineToRender = <a>+</a>;
+  renderAction() {
+    if (this.props.isRemoval) {
+      return <a className="Track-action" onClick={this.removeTrack}>-</a>
     }
-    return lineToRender;
+    return <a className="Track-action" onClick={this.addTrack}>+</a>;
   }
 
   render(){
@@ -23,7 +19,7 @@ return (
       <h3>{this.props.track.name}</h3>
      <p>{this.props.track.artist} | {this.props.track.album}</p>
     </div>
-    <a className="Track-action">{this.renderAction()}</a>
+    {this.renderAction()}
   </div>
 );
 }
