@@ -3,8 +3,6 @@ import './App.css';
 import SearchBar from '../SearchBar/SearchBar.js';
 import SearchResults from '../SearchResults/SearchResults.js';
 import Playlist from '../Playlist/Playlist.js';
-import TrackList from '../TrackList/TrackList.js';
-import Track from '../Track/Track.js'
 
 class App extends Component {
   constructor(props) {
@@ -18,7 +16,9 @@ class App extends Component {
       ]
   },
   {
-    playlistName: 'Roadtrip'
+    playlistName: [
+      {name: 'Roadtrip'}
+    ]
   },
   {
     playlistTracks: [
