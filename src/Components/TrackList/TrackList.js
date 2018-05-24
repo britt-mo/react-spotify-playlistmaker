@@ -9,7 +9,7 @@ render() {
     <div className="TrackList">
     {
         this.props.tracks.map(track =>{
-        return <Track track={track} key={track.id} />
+        return <Track track={this.props.track} key={track.id} />
       })
     }
     </div>
