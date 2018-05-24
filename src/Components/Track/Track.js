@@ -1,5 +1,6 @@
 import React from 'react';
 import './Track.css';
+import SearchResults from '../SearchResults/SearchResults.js'
 
 class Track extends React.Component {
   constructor(props) {
