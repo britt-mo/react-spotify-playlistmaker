@@ -13,14 +13,12 @@ class App extends Component {
         artist: 'Prince',
         album: 'Musicology',
         id: '1'}
-      ]
-  },
-  {
+      ],
+
     playlistName: [
       {name: 'Roadtrip'}
-    ]
-  },
-  {
+    ],
+
     playlistTracks: [
       {name: 'Bye Bye Bye',
       artist: 'NSync',

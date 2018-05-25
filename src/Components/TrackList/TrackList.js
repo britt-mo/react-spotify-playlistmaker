@@ -11,7 +11,6 @@ render() {
         return <Track track={track} key={track.id} />
       })
     }
-    console.log();
     </div>
     );
     }
