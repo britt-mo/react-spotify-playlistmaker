@@ -25,8 +25,29 @@ class App extends Component {
       album: 'No Strings Attached',
       id: '2'}
     ]
-  }
+  };
+  this.addTrack = this.addTrack.bind(this);
+  this.removeTrack = this.removeTrack.bind(this);
 }
+
+  addTrack(track) {
+    if (this.state.playlistTracks.find(savedTrack => savedTrack.id === track.id)) {
+  return;
+} else {
+     let tracks = this.state.playlistTracks;
+     tracks.push(track);
+     this.setState({playlistTracks: tracks});
+   }
+  }
+
+  removeTrack(track) {
+  this.setState({
+    playlistTracks: this.state.playlistTracks.filter(playlistTrack => {
+      return playlistTrack.id !== track.id;
+    })
+  });
+}
+
 
   render() {
     return (
@@ -35,8 +56,11 @@ class App extends Component {
   <div className="App">
     <SearchBar/>
     <div className="App-playlist">
-      <SearchResults searchResults ={this.state.searchResults}/>
-      <Playlist playlistName={this.state.playlistName} playlistTracks={this.state.playlistTracks}/>
+      <SearchResults searchResults ={this.state.searchResults}
+      onAdd={this.addTrack}/>
+      <Playlist playlistName={this.state.playlistName}
+      playlistTracks={this.state.playlistTracks}
+      onRemove={this.removeTrack()}/>
     </div>
   </div>
 </div>
