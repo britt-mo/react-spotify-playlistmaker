@@ -41,11 +41,9 @@ class App extends Component {
   }
 
   removeTrack(track) {
-  this.setState({
-    playlistTracks: this.state.playlistTracks.filter(playlistTrack => {
-      return playlistTrack.id !== track.id;
-    })
-  });
+   let tracks = this.state.playlistTracks;
+   tracks = tracks.filter(currentTrack => currentTrack.id !== track.id);
+   this.setState({playlistTracks: tracks});
 }
 
 
@@ -60,7 +58,7 @@ class App extends Component {
       onAdd={this.addTrack}/>
       <Playlist playlistName={this.state.playlistName}
       playlistTracks={this.state.playlistTracks}
-      onRemove={this.removeTrack()}/>
+      onRemove={this.removeTrack}/>
     </div>
   </div>
 </div>
