@@ -6,7 +6,13 @@ class Track extends React.Component {
     super(props);
 
     this.addTrack = this.addTrack.bind(this);
+    this.removeTrack = this.removeTrack.bind(this);
   }
+
+  removeTrack() {
+    this.props.onRemove(this.props.track);
+  }
+
   renderAction() {
     if (this.props.isRemoval) {
       return <a className="Track-action" onClick={this.removeTrack}>-</a>
