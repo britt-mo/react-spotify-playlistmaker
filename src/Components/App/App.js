@@ -10,10 +10,8 @@ class App extends Component {
     super(props);
     this.state = {
       playlistName: 'New playlist',
-      playlistTracks: [
-      ],
-      searchResults: [
-      ],
+      playlistTracks: [],
+      searchResults: [],
   };
   this.addTrack = this.addTrack.bind(this);
   this.removeTrack = this.removeTrack.bind(this);
@@ -23,13 +21,13 @@ class App extends Component {
 }
 
 addTrack(track) {
-  let isOnTrack = false;
+  let isOnPlaylist = false;
   this.state.playlistTracks.forEach(playlistTrack => {
     if (playlistTrack.URI === track.URI) {
-      isOnTrack = true;
+      isOnPlaylist = true;
     }
   });
-  if (!isOnTrack) {
+  if (!isOnPlaylist) {
     this.state.playlistTracks.push(track);
     this.setState({ playlistTracks: this.state.playlistTracks });
   }
