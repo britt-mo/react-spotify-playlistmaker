@@ -3,28 +3,17 @@ import './App.css';
 import SearchBar from '../SearchBar/SearchBar.js';
 import SearchResults from '../SearchResults/SearchResults.js';
 import Playlist from '../Playlist/Playlist.js';
+import Spotify from '../../util/Spotify';
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      searchResults: [
-        {name: 'Song',
-        artist: 'Prince',
-        album: 'Musicology',
-        id: '1'}
+      playlistName: 'New playlist',
+      playlistTracks: [
       ],
-
-    playlistName: [
-      {name: 'Roadtrip'}
-    ],
-
-    playlistTracks: [
-      {name: 'Bye Bye Bye',
-      artist: 'NSync',
-      album: 'No Strings Attached',
-      id: '2'}
-    ]
+      searchResults: [
+      ],
   };
   this.addTrack = this.addTrack.bind(this);
   this.removeTrack = this.removeTrack.bind(this);
@@ -56,13 +45,26 @@ class App extends Component {
   }
 
   savePlaylist() {
-    const trackUris = this.state.playlistTracks.map(track => track.uri);
-
+    const trackUris = this.state.playlistTracks.map(track => track.URI);
+    if (trackUris.length > 0) {
+      Spotify.savePlayList(this.state.playlistName, trackUris).then(results => {
+        this.setState({ searchResults: [], playlistName: 'New Playlist', playlistTracks: [] });
+      });
+    } else {
+      console.log('No tracks to add');
+    }
     }
 
 
   search(term) {
-    console.log(term);
+    if (term !== '') {
+      Spotify.search(term).then(results => {
+        console.log(results);
+        this.setState({ searchResults: results })
+      });
+    } else {
+      this.setState({ searchResults: [] })
+    }
   }
 
 
@@ -73,8 +75,7 @@ class App extends Component {
   <div className="App">
     <SearchBar onSearch={this.search}/>
     <div className="App-playlist">
-      <SearchResults searchResults ={this.state.searchResults}
-      onAdd={this.addTrack}/>
+      <SearchResults searchResults ={this.state.searchResults} onAdd={this.addTrack}/>
       <Playlist playlistName={this.state.playlistName}
       playlistTracks={this.state.playlistTracks}
       onRemove={this.removeTrack}
