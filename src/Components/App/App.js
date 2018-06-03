@@ -56,8 +56,10 @@ class App extends Component {
   }
 
   savePlaylist() {
+    const trackUris = this.state.playlistTracks.map(track => track.uri);
 
-  }
+    }
+
 
   search(term) {
     console.log(term);
