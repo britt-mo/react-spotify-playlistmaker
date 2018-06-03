@@ -22,15 +22,18 @@ class App extends Component {
   this.search = this.search.bind(this);
 }
 
-  addTrack(track) {
-    if (this.state.playlistTracks.find(savedTrack => savedTrack.id === track.id)) {
-  return;
-} else {
-     let tracks = this.state.playlistTracks;
-     tracks.push(track);
-     this.setState({playlistTracks: tracks});
-   }
+addTrack(track) {
+  let isOnTrack = false;
+  this.state.playlistTracks.forEach(playlistTrack => {
+    if (playlistTrack.URI === track.URI) {
+      isOnTrack = true;
+    }
+  });
+  if (!isOnTrack) {
+    this.state.playlistTracks.push(track);
+    this.setState({ playlistTracks: this.state.playlistTracks });
   }
+}
 
   removeTrack(track) {
    let tracks = this.state.playlistTracks;
