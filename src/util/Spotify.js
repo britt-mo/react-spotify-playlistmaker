@@ -20,6 +20,7 @@ const Spotify = {
             userAccessToken = '';
           }, expirationTime);
           window.history.pushState('For Access Token', null, '/');
+          return userAccessToken;
         } else {
           window.location.href =
           `https://accounts.spotify.com/authorize?client_id=${clientID}&response_type=token&scope=playlist-modify-public&redirect_uri=${redirectURI}`;

@@ -65,13 +65,15 @@ addTrack(track) {
   <div className="App">
     <SearchBar onSearch={this.search}/>
     <div className="App-playlist">
-      <SearchResults searchResults ={this.state.searchResults} addTrack={this.addTrack}/>
+      <SearchResults
+          searchResults ={this.state.searchResults}
+          addTrack={this.addTrack}/>
       <Playlist
-      playlistName={this.state.playlistName}
-      playlistTracks={this.state.playlistTracks}
-      onRemove={this.removeTrack}
-      onNameChange={this.updatePlaylistName}
-      onSave={this.savePlaylist}/>
+        playlistName={this.state.playlistName}
+        playlistTracks={this.state.playlistTracks}
+        onRemove={this.removeTrack}
+        onNameChange={this.updatePlaylistName}
+        onSave={this.savePlaylist}/>
     </div>
   </div>
 </div>
