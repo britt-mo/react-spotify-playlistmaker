@@ -10,26 +10,24 @@ const Spotify = {
 
         const url = window.location.href;
 
-        const accessToken = url.match(/access_token=([^&]*)/);
-        const expiresIn = url.match(/expires_in=([^&]*)/);
+        const accessTokenMatch = window.location.href.match(/access_token=([^&]*)/);
+        const expiresInMatch = window.location.href.match(/expires_in=([^&]*)/);
 
-        if(userAccessToken && expiresIn) {
-          userAccessToken = accessToken[1];
-          const expirationTime = Number(expiresIn[1]) * 1000;
-          window.setTimeout(() => {
-            userAccessToken = '';
-          }, expirationTime);
-          window.history.pushState('For Access Token', null, '/');
+        if(accessTokenMatch && expiresInMatch) {
+          userAccessToken = accessTokenMatch[1];
+          const expiresIn = Number(expiresInMatch[1]);
+          window.setTimeout(() =>(userAccessToken = ''), expiresIn * 1000);
+          window.history.pushState('Access Token', null, '/'); // This clears the parameters, allowing us to grab a new access token when it expires.
           return userAccessToken;
-        } else {
-          window.location.href =
-          `https://accounts.spotify.com/authorize?client_id=${clientID}&response_type=token&scope=playlist-modify-public&redirect_uri=${redirectURI}`;
+          } else {
+          const accessUrl = `https://accounts.spotify.com/authorize?client_id=${clientID}&response_type=token&scope=playlist-modify-public&redirect_uri=${redirectURI}`;
+          window.location = accessUrl;
         }
       },
 
 
     search(term) {
-        const accessToken = this.getAccessToken();
+        const accessToken = Spotify.getAccessToken();
         const endpoint = `https://api.spotify.com/v1/search?type=track&q=${term}`;
 
         return fetch(endpoint, {
