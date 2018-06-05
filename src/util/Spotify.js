@@ -1,5 +1,5 @@
 const clientID = 'fec769fa1c7342e980c99f44d3aa56e2';
-const redirectURI = 'http://localhost:3000/';
+const redirectURI = 'http://create_playlist.surge.sh';
 let userAccessToken = '';
 
 const Spotify = {
@@ -7,8 +7,6 @@ const Spotify = {
         if (userAccessToken) {
             return userAccessToken;
         }
-
-        const url = window.location.href;
 
         const accessTokenMatch = window.location.href.match(/access_token=([^&]*)/);
         const expiresInMatch = window.location.href.match(/expires_in=([^&]*)/);
